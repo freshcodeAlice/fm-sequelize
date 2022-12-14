@@ -46,9 +46,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     birthday: {
       type: DataTypes.DATEONLY,
-      allowNull: false,
       validate: {
-        notNull: true,
         isDate: true,
         isValidDate (value) {
           if(isAfter(new Date(value), new Date())){
