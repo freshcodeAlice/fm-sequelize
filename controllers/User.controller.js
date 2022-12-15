@@ -28,3 +28,23 @@ module.exports.findOnePK = async (req, res, next) => {
         next(error)
     }
 }
+
+module.exports.deleteByPK = async(req, res, next) => {
+    try {
+        const {params: {id}} = req;
+        console.log(id);
+        const rowsCount = await User.destroy({
+            where: {
+                id
+            }
+        });
+        if(rowsCount) {
+            res.status(200).send('Successfull delete');
+        } else {
+            res.status(204).send(); 
+        }
+
+    } catch(error) {
+        next(error);
+    }
+}
