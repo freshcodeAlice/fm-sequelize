@@ -39,11 +39,27 @@ module.exports.deleteByPK = async(req, res, next) => {
             }
         });
         if(rowsCount) {
-            res.status(200).send('Successfull delete');
+          return res.status(200).send('Successfull delete');
         } else {
-            res.status(204).send(); 
+         return res.status(204).send(); 
         }
 
+    } catch(error) {
+        next(error);
+    }
+}
+
+
+module.exports.updateUser = async (req, res, next) => {
+    try {
+        const {params: {id}, body} = req;
+        const result = await User.update(body, {
+            where: {
+                id
+            }
+        });
+        console.log(result);
+       return res.status(200).send();
     } catch(error) {
         next(error);
     }
