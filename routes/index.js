@@ -1,6 +1,7 @@
 const {Router} = require('express');
 const TaskController = require('../controllers/Task.controller');
 const UserController = require('../controllers/User.controller');
+const {validateTask} = require('../middlewares/task.mw');
 const {getUserInstance, validateUser} = require('../middlewares/user.mw');
 
 const router = Router();
@@ -11,7 +12,7 @@ router.get('/user/:userId',getUserInstance,  UserController.findOnePK);
 router.delete('/user/:userId', UserController.deleteByPK);
 router.put('/user/:userId', getUserInstance, UserController.updateUser);
 
-router.post('/task/:userId', getUserInstance, TaskController.createTask);
+router.post('/task/:userId', validateTask, getUserInstance, TaskController.createTask);
 router.get('/task/:userId', getUserInstance, TaskController.getAllUserTasks);
 router.get('/task-count/:userId', getUserInstance, TaskController.getCountOfTasks);
 
