@@ -2,10 +2,10 @@ POST http://localhost:3000/api/user HTTP/1.1
 Content-Type: application/json
 
 {
-    "firstName": "Steven",
-    "lastName": "Strange",
-    "email": "strange@doctor.com",
-    "password": "qwerty",
-    "birthday": "1980-08-08",
+    "firstName": "Ant",
+    "lastName": "Man",
+    "email": "ant@ant.com",
+    "password": "qwertyqwerty",
+    "birthday": "1200",
     "gender": "male"
 }
