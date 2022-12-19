@@ -9,4 +9,6 @@ module.exports.errorHandler = async(err, req, res, next) => {
     if(err instanceof UserError) {
       return res.status(404).send(err.message);
     }
+
+    return res.status(500).send(err.message);
 }

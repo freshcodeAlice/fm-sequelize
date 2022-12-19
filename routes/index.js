@@ -1,6 +1,7 @@
 const {Router} = require('express');
 const TaskController = require('../controllers/Task.controller');
 const UserController = require('../controllers/User.controller');
+const GroupController = require('../controllers/Group.controller');
 const {validateTask} = require('../middlewares/task.mw');
 const {getUserInstance, validateUser} = require('../middlewares/user.mw');
 
@@ -15,6 +16,11 @@ router.put('/user/:userId', getUserInstance, UserController.updateUser);
 router.post('/task/:userId', validateTask, getUserInstance, TaskController.createTask);
 router.get('/task/:userId', getUserInstance, TaskController.getAllUserTasks);
 router.get('/task-count/:userId', getUserInstance, TaskController.getCountOfTasks);
+
+
+
+router.post('/groups', GroupController.createGroup);
+router.put('/groups/:userId/:groupId', getUserInstance, GroupController.addUserToGroup);
 
 module.exports = router;
 
