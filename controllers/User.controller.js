@@ -84,6 +84,9 @@ module.exports.getUserWithGroups = async (req, res, next) => {
     try {
         const {params: {userId}} = req;
         const userWithGroups = await User.findByPk(userId, {
+            attributes: {
+                exclude: ['password']
+            },
             include: [Group]
         });
         res.status(200).send(userWithGroups);
