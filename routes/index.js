@@ -17,7 +17,7 @@ TODO:
 +2. Refactor router
 +3. Adding middleware to found instance
 +4. Validating data to create users, task
-5. pagination
++5. pagination
 
 
 */
