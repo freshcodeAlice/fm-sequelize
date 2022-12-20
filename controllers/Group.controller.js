@@ -52,3 +52,17 @@ module.exports.deleteUserFromGroup = async(req, res, next) => {
         next(error);
     }
 }
+
+
+
+module.exports.getAllGroups = async (req, res, next) => {
+    try {
+        const {pagination} = req;
+        const groups = await Group.findAll({
+            ...pagination
+        });
+        res.status(200).send(groups);
+    }catch(error) {
+        next(error)
+    }
+}

@@ -10,8 +10,8 @@ module.exports = async (req, res, next) => {
             }
         } else {
             req.pagination = {
-                limit: limit > MAX_LIMIT || limit <= 0 ? MAX_LIMIT : limit,
-                offset: offset < 0 ? 0 : offset
+                limit: limit < MAX_LIMIT || limit >= 0 ? limit : MAX_LIMIT,
+                offset: offset > 0 ? offset : 0
             }
         }
         next();
