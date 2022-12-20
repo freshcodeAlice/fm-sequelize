@@ -17,9 +17,18 @@ module.exports.addUserToGroup = async(req, res, next) => {
         const {userInstance, params: {groupId}} = req;
         const groupInstance = await Group.findByPk(groupId);
         const result = await groupInstance.addUser(userInstance);
-        console.log(result);
        return res.status(200).send('User successfully added to group');
     } catch(error) {
+        next(error);
+    }
+}
+
+module.exports.getUserGroups = async (req, res, next) => {
+    try {
+        const {userInstance} = req;
+        const groups = await userInstance.getGroups();
+        res.status(200).send(groups);
+    } catch(error){
         next(error);
     }
 }
