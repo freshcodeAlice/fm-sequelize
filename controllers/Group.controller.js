@@ -66,3 +66,10 @@ module.exports.getAllGroups = async (req, res, next) => {
         next(error)
     }
 }
+
+
+/*
+Зробити функціонал отримання однієї групи зі всіма її учасниками
+
+
+*/
