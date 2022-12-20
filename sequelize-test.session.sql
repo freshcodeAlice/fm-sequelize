@@ -1,0 +1,4 @@
+SELECT * FROM tasks
+WHERE user_id = 10
+LIMIT 10
+OFFSET 10

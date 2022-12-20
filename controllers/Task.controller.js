@@ -14,8 +14,11 @@ module.exports.createTask = async(req, res, next) => {
 
 module.exports.getAllUserTasks = async(req, res, next) => {
     try {
-        const {userInstance} = req;
-       const tasks = await userInstance.getTasks();
+        const {userInstance, pagination} = req;
+        console.log(req.query);
+       const tasks = await userInstance.getTasks({
+                ...pagination
+       });
        return res.status(200).send(tasks);
     } catch(error) {
         next(error)
