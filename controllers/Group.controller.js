@@ -90,3 +90,30 @@ module.exports.getGroupWithMembers = async (req, res, next) => {
         next(error);
     }
 }
+
+/*
+
+{
+  fieldname: 'groupAvatar',
+  originalname: 'logo.png',
+  encoding: '7bit',
+  mimetype: 'image/png',
+  destination: '/home/freshcodealice/Стільниця/ALICE/onl-js-1 (fm)/fm-sequelize/public/images',
+  filename: '95451fbb99141cdbdcac7c5aa18579e7',
+  path: '/home/freshcodealice/Стільниця/ALICE/onl-js-1 (fm)/fm-sequelize/public/images/95451fbb99141cdbdcac7c5aa18579e7',
+  size: 5241
+}
+
+*/
+
+
+
+module.exports.createGroupImage = async(req, res, next) => {
+    try {
+        const {params: {groupId}} = req;
+        console.log(req.file);
+        res.send({groupId});
+    } catch(error) {
+        next(error);
+    }
+}
