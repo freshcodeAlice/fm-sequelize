@@ -1,4 +1,4 @@
-const {Group} = require("../models/");
+const {Group, User} = require("../models/");
 
 module.exports.createGroup = async(req, res, next) => {
     try {
@@ -73,3 +73,23 @@ module.exports.getAllGroups = async (req, res, next) => {
 
 
 */
+
+module.exports.getGroupWithMembers = async (req, res, next) => {
+    try {
+        const {params: {groupId}} = req;
+        const groupWithUser = await Group.findAll({
+            where: {
+                id: groupId
+            },
+            include: [{
+                model: User,
+                attributes: {
+                    exclude: ['password']
+                    }
+            }]
+        });
+        res.status(200).send(groupWithUser);
+    } catch(error) {
+        next(error);
+    }
+}
