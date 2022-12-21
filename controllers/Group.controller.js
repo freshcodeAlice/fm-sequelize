@@ -99,8 +99,8 @@ module.exports.getGroupWithMembers = async (req, res, next) => {
   encoding: '7bit',
   mimetype: 'image/png',
   destination: '/home/freshcodealice/Стільниця/ALICE/onl-js-1 (fm)/fm-sequelize/public/images',
-  filename: '95451fbb99141cdbdcac7c5aa18579e7',
-  path: '/home/freshcodealice/Стільниця/ALICE/onl-js-1 (fm)/fm-sequelize/public/images/95451fbb99141cdbdcac7c5aa18579e7',
+  filename: '1671610186588.logo.png',
+  path: '/home/freshcodealice/Стільниця/ALICE/onl-js-1 (fm)/fm-sequelize/public/images/1671610186588.logo.png',
   size: 5241
 }
 
@@ -110,9 +110,16 @@ module.exports.getGroupWithMembers = async (req, res, next) => {
 
 module.exports.createGroupImage = async(req, res, next) => {
     try {
-        const {params: {groupId}} = req;
-        console.log(req.file);
-        res.send({groupId});
+        const {params: {groupId}, file: {filename}} = req;
+        const [rowCount, [updatedGroup]] = await Group.update({
+            imagePath: filename
+        }, {
+            where: {
+                id: groupId,
+            },
+            returning: true
+        });
+        res.status(200).send(updatedGroup);
     } catch(error) {
         next(error);
     }
