@@ -4,10 +4,11 @@ const path = require('path');
 const {getUserInstance} = require('../middlewares/user.mw');
 const GroupController = require('../controllers/Group.controller');
 const pagination = require('../middlewares/pagination.mw');
+const {STATIC_PATH} = require('../config/path.config');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, path.resolve(__dirname, '../public/images'))
+      cb(null, STATIC_PATH)
     },
     filename: function (req, file, cb) {
       cb(null, `${Date.now()}.${file.originalname}`)
