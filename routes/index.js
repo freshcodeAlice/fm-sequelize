@@ -5,7 +5,7 @@ const groupRouter = require('./groupRouter');
 
 const router = Router();
 router.use('/users', userRouter);
-router.use('/task', taskRouter);
+router.use('/tasks', taskRouter);
 router.use('/groups', groupRouter);
 
 
